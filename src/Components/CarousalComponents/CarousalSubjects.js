@@ -4,7 +4,7 @@ import ElegantCard from '../ElegantCard'
 import '../../Styles/EvaluationStyles.css'
 import { Divider } from '@mui/material';
 
-function CarousalSubjects({userChoiceModule}) {
+function CarousalSubjects({userChoiceModule,changeChoiceSubjectCallback}) {
   
   const [coreSubjects,updateCoreSubjects] = useState([]);
 
@@ -27,7 +27,9 @@ function CarousalSubjects({userChoiceModule}) {
             {coreSubjects!==undefined && coreSubjects.length!==0 ?
                 ( 
                     coreSubjects.map((item,index) => (
-                        <div key={index}>
+                        <div key={index} onClick={()=>{
+                            changeChoiceSubjectCallback(item)
+                        }}>
                             <ElegantCard cardName={item} />
                         </div>
                     ))
