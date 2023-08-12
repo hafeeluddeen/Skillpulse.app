@@ -1,0 +1,19 @@
+.question {
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.question p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+  

@@ -1,0 +1,6 @@
+.Carousal-Modules-Holder, .Carousal-Subjects-Holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
