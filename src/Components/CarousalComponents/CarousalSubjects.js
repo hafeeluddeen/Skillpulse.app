@@ -9,6 +9,7 @@ function CarousalSubjects({userChoiceModule,changeChoiceSubjectCallback}) {
   const [coreSubjects,updateCoreSubjects] = useState([]);
 
   //whenever the prop in the parent changes the child also changes
+  //When I make a change in the carousal module, it has to update here
   useEffect(()=>{
     if(userChoiceModule==='m1'){
         updateCoreSubjects(Object.values(modules.m1))

@@ -4,7 +4,7 @@ import {modules} from '../../Data/ModulesData'
 import '../../Styles/EvaluationStyles.css'
 
 
-function CarousalModules({changeChoiceModalCallback}) {
+function CarousalModules({changeChoiceModuleCallback}) {
 
   const [modulesList,updateModulesList] = useState(Object.keys(modules));
 
@@ -12,7 +12,7 @@ function CarousalModules({changeChoiceModalCallback}) {
       <div className='Carousal-Modules-Holder'> 
         {modulesList.map((item,index) => (
           <div key={index} onClick={()=>{
-            changeChoiceModalCallback(item)
+            changeChoiceModuleCallback(item)
           }}>
             <ElegantCard  cardName={item} />
           </div>

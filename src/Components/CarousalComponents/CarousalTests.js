@@ -4,23 +4,36 @@ import ElegantCard from '../ElegantCard'
 import '../../Styles/EvaluationStyles.css'
 import { Divider } from '@mui/material'
 
-function CarousalTests({userChoiceSubject,userChoiceModule}) {
+function CarousalTests({userChoiceSubject,changeChoiceTestCallback,userChoiceModule}) {
 
 
-  const [testAttendance,updateTestAttendance] = useState({entryTest:false,exitTest:false})
+  const [testAttendance,updateTestAttendance] = useState({})
 
-  //check the testHistory for selected Subject
+  //check the testHistory for selected Subject : namesake
   useEffect(()=>{
 
-    // var obj = {
-    //   entryTest : TestModulesHistory[userChoiceModule][userChoiceSubject].entryTest,
-    //   exitTest : TestModulesHistory[userChoiceModule][userChoiceSubject].exitTest,
-    // };
+    if(TestModulesHistory[userChoiceModule]!==undefined){
+      console.log(TestModulesHistory[userChoiceModule])
+      var storekey = "nf"
+      //find the key, by looping through
+      for(const key in TestModulesHistory[userChoiceModule]){
+        if(TestModulesHistory[userChoiceModule][key].subjectName === userChoiceSubject){
+          storekey = key;
+          break;
+        }
+      }      
 
-    // updateTestAttendance(obj);
-    console.log(userChoiceSubject);
+      if(storekey!="nf"){
+        var obj = {
+          entryTest : TestModulesHistory[userChoiceModule][storekey].entryTest,
+          exitTest : TestModulesHistory[userChoiceModule][storekey].exitTest,
+        };
+        updateTestAttendance(obj);
+      }
+      
+    }
 
-  },[userChoiceSubject])
+  },[userChoiceSubject,userChoiceModule])
 
   return (
     <div>
@@ -28,7 +41,7 @@ function CarousalTests({userChoiceSubject,userChoiceModule}) {
       <div className='Carousal-Tests-Holder'>
         {!testAttendance.entryTest ? 
           (
-            <div>
+            <div onClick={()=>{changeChoiceTestCallback("entry test "+userChoiceSubject)}}>
               <ElegantCard  cardName={`Entry Test ${userChoiceSubject}`} />
             </div>
           ):
@@ -40,7 +53,7 @@ function CarousalTests({userChoiceSubject,userChoiceModule}) {
         }
         {!testAttendance.exitTest ? 
           (
-            <div>
+            <div onClick={()=>{changeChoiceTestCallback("exit test "+userChoiceSubject)}}>
               <ElegantCard  cardName={`Exit Test ${userChoiceSubject}`} />
             </div>
           ):
