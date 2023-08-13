@@ -4,7 +4,7 @@ import {modules} from '../../Data/ModulesData'
 import '../../Styles/EvaluationStyles.css'
 
 
-function CarousalModules({changeChoiceModuleCallback}) {
+function CarousalModules({changeChoiceModuleCallback, changeChoiceSubjectCallback, changeChoiceTestCallback}) {
 
   const [modulesList,updateModulesList] = useState(Object.keys(modules));
 
@@ -13,6 +13,8 @@ function CarousalModules({changeChoiceModuleCallback}) {
         {modulesList.map((item,index) => (
           <div key={index} onClick={()=>{
             changeChoiceModuleCallback(item)
+            changeChoiceSubjectCallback("") //to release the tests part
+            changeChoiceTestCallback("")
           }}>
             <ElegantCard  cardName={item} />
           </div>

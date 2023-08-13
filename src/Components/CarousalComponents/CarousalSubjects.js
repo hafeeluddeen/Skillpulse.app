@@ -35,7 +35,7 @@ function CarousalSubjects({userChoiceModule,changeChoiceSubjectCallback}) {
                         </div>
                     ))
                     
-                ) : <h3>No modules selected yet</h3>
+                ) : <h3>SELECT MODULE TO VIEW SUBJECT</h3>
             }
         </div>
     </div>

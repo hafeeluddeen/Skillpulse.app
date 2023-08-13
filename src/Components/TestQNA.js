@@ -1,18 +1,5 @@
 import React,{useState} from 'react'
 import '../Styles/TestQNA.css'
-import Textarea from "rc-textarea";
-
-//before starting the test
-
-// 1. check which subject has been chosen
-// 2. load the questions
-// 3. Once submit button is pressed after every question, store 
-// {question num (key) : 
-//   [question, expected ans, my ans] get values using index
-// }
-// send and wait for response from server to then ... update the graph
-
-// update the TestHistory
 
 function TestQNA() {
 

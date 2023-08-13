@@ -76,6 +76,7 @@ function Dashboard() {
             TransitionComponent={Transition}
             className='Dialog-Container'
           >
+            
             <AppBar sx={{ position: 'relative' }}>
               <Toolbar>
                 <IconButton

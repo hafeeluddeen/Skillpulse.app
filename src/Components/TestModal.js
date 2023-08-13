@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Paper, IconButton, Container, Grid } from '@mui/material';
+import { Paper, IconButton, Container, Grid, Typography  } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CarousalModules from './CarousalComponents/CarousalModules';
@@ -37,11 +37,15 @@ export default function TextCarousel() {
   },[userChoiceModule,userChoiceSubject,userChoiceTest])
 
   return (
-    <Container style={{height:'auto',marginTop:'20px'}}>
+    <Container style={{marginTop:'20px',marginBottom:'20px'}}>
 
       <Paper elevation={3} style={{ padding: '20px' }}>
 
-        <CarousalModules changeChoiceModuleCallback={changeChoiceModuleCallback} />
+        <Typography variant="p" style={{ color: '#6b6b6b' }}>
+          ROUTE : {userChoiceModule.toUpperCase()} / {userChoiceSubject.toUpperCase()} / {userChoiceTest.toUpperCase()}
+        </Typography>
+        {/* change choice of test if module is selected */}
+        <CarousalModules changeChoiceModuleCallback={changeChoiceModuleCallback} changeChoiceSubjectCallback={changeChoiceSubjectCallback} changeChoiceTestCallback={changeChoiceTestCallback} />
         <CarousalSubjects userChoiceModule={userChoiceModule} changeChoiceSubjectCallback={changeChoiceSubjectCallback} />
         <CarousalTests userChoiceSubject={userChoiceSubject} changeChoiceTestCallback={changeChoiceTestCallback} userChoiceModule={userChoiceModule} />
 

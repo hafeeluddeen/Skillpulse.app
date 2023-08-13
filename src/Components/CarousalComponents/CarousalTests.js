@@ -12,8 +12,7 @@ function CarousalTests({userChoiceSubject,changeChoiceTestCallback,userChoiceMod
   //check the testHistory for selected Subject : namesake
   useEffect(()=>{
 
-    if(TestModulesHistory[userChoiceModule]!==undefined){
-      console.log(TestModulesHistory[userChoiceModule])
+    if(TestModulesHistory[userChoiceModule]!==""){
       var storekey = "nf"
       //find the key, by looping through
       for(const key in TestModulesHistory[userChoiceModule]){
@@ -39,33 +38,37 @@ function CarousalTests({userChoiceSubject,changeChoiceTestCallback,userChoiceMod
     <div>
       <Divider  style={{position:'relative',width:'100%'}} />
       <div className='Carousal-Tests-Holder'>
-        {!testAttendance.entryTest ? 
-          (
-            <div onClick={()=>{changeChoiceTestCallback("entry test "+userChoiceSubject)}}>
-              <ElegantCard  cardName={`Entry Test ${userChoiceSubject}`} />
-            </div>
-          ):
-          (
-            <div>
-              <ElegantCard  cardName={`Entry Test Taken`} />
-            </div>
-          )
-        }
-        {!testAttendance.exitTest ? 
-          (
-            <div onClick={()=>{changeChoiceTestCallback("exit test "+userChoiceSubject)}}>
-              <ElegantCard  cardName={`Exit Test ${userChoiceSubject}`} />
-            </div>
-          ):
-          (
-            <div>
-              <ElegantCard  cardName={`Exit Test Taken`} />
-            </div>
-          )
-        }
-          
-
+        {userChoiceSubject!=="" ? (
+          <div className='Carousal-Tests-Holder'>
+            {!testAttendance.entryTest ? 
+              (
+                <div onClick={()=>{changeChoiceTestCallback("entry test "+userChoiceSubject)}}>
+                  <ElegantCard  cardName={`Entry Test ${userChoiceSubject}`} />
+                </div>
+              ):
+              (
+                <div>
+                  <ElegantCard  cardName={`Entry Test Taken`} />
+                </div>
+              )
+            }
+            {!testAttendance.exitTest ? 
+              (
+                <div onClick={()=>{changeChoiceTestCallback("exit test "+userChoiceSubject)}}>
+                  <ElegantCard  cardName={`Exit Test ${userChoiceSubject}`} />
+                </div>
+              ):
+              (
+                <div>
+                  <ElegantCard  cardName={`Exit Test Taken`} />
+                </div>
+              )
+            }
+          </div>
+        ) : <h3>SELECT SUBJECT TO VIEW TESTS</h3> }
       </div>
+
+      
     </div>
 
   )
