@@ -50,15 +50,17 @@ function Dashboard() {
   return (
     <ThemeProvider theme={theme}>
       <div className='Dashboard-Container'>
+
         <div className='Score-Graph-Representation'>
           <GraphModule />
         </div>
 
         <Divider style={{position:'absolute', height:'200px 0' }} />
 
+
         {/* Predefined score rep json from DATA, also the comments */}
         <div className='Score-Text-Representation'>
-          <h2>Take atleast one test to view analytics</h2>
+          <h3>TAKE ATLEAST ONE TEST TO VIEW ANALYTICS</h3>
         </div> 
         
         
