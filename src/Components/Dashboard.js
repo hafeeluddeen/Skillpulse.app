@@ -22,6 +22,8 @@ import { grey } from '@mui/material/colors';
 import '../Styles/DashboardStyles.css'
 
 
+import { useNavigate } from 'react-router-dom';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -37,7 +39,10 @@ const theme = createTheme({
 
 function Dashboard() {
 
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false); //to open and close the modal
+  const [takeTest,changeTakeTest] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,7 +50,24 @@ function Dashboard() {
 
   const handleClose = () => {
     setOpen(false);
+
+    //takeTest, redirect to test with params
+    console.log(takeTest.join('/'))
+
+    const moduleName = takeTest[0];
+    const subjectName = takeTest[1];
+    const testType = takeTest[2]; // Replace with your dynamic value
+    console.log('Navigation done ',`/test/${moduleName}/${subjectName}/${testType}`)
+    navigate(`/test/${moduleName}/${subjectName}/${testType}`);
   };
+
+  const getCombinedChoices = (module,subject,test) =>{
+    let arr = [];
+    arr.push(module);
+    arr.push(subject);
+    arr.push(test);
+    changeTakeTest(arr);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -97,7 +119,7 @@ function Dashboard() {
             </AppBar>
 
             {/* You can add your custom content here */}
-            <TestModal />
+            <TestModal getCombinedChoices={getCombinedChoices} />
 
           </Dialog>
         </div>

@@ -7,7 +7,7 @@ import CarousalSubjects from './CarousalComponents/CarousalSubjects';
 import CarousalTests from './CarousalComponents/CarousalTests'
 
 
-export default function TextCarousel() {
+export default function TextCarousel({getCombinedChoices}) {
 
   const [userChoiceModule,changeChoiceModule] = useState("");
   const [userChoiceSubject,changeChoiceSubject] = useState("");
@@ -34,6 +34,9 @@ export default function TextCarousel() {
   //whenever update happens, update the input
   useEffect(()=>{
     console.log(`updated vals : Module : ${userChoiceModule}, Subject : ${userChoiceSubject}, Test Chosen : ${userChoiceTest}`)
+  
+    getCombinedChoices(userChoiceModule,userChoiceSubject,userChoiceTest);
+    //get the right choices on click
   },[userChoiceModule,userChoiceSubject,userChoiceTest])
 
   return (

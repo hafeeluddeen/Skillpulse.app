@@ -13,7 +13,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<h1>404 PAGE NOT FOUND</h1>} />
         </Route>
-        <Route path="/test" element={<TestQNA questions={cnEntryTest} />} />
+        <Route path="/test" element={<TestQNA />} />
+        <Route path="/test/:moduleName/:subjectName/:testType" element={<TestQNA />} />
       </Routes>
     </Router>
   );

@@ -22,7 +22,7 @@ function CarousalTests({userChoiceSubject,changeChoiceTestCallback,userChoiceMod
         }
       }      
 
-      if(storekey!="nf"){
+      if(storekey!=="nf"){
         var obj = {
           entryTest : TestModulesHistory[userChoiceModule][storekey].entryTest,
           exitTest : TestModulesHistory[userChoiceModule][storekey].exitTest,

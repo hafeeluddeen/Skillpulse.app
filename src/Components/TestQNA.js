@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Container, Card, CardContent, TextField, Button } from '@mui/material';
 import TestTitleCard from './TestTitleCard';
 
+import { cnEntryTest } from '../Data/QNA Entry Tests/ALL_ENTRY_TEST'; 
+import { useParams } from 'react-router-dom';
+
 const QuestionForm = ({ questions }) => {
+  questions = cnEntryTest;
   const [answers, setAnswers] = useState(questions.map((q) => ({ user_answer: '' })));
 
   const handleAnswerChange = (index, value) => {
@@ -14,6 +18,9 @@ const QuestionForm = ({ questions }) => {
   const handleSubmit = () => {
     console.log('Submitted answers:', answers);
   };
+
+  const { moduleName } = useParams();
+  console.log('params passed : ',moduleName);
 
   return (
     <div style={{background:"#F0EBF8"}}>
