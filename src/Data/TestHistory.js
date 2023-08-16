@@ -50,7 +50,7 @@ var TestTotalMarks = {
     m2 : {
         "CN" : 0, 
         "DBMS" : 9,
-        "OS" : -1,
+        "OS" : -2,
     },
 }
 
