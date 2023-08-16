@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 
 const getQuestionSet = (moduleName,subjectName,testType) =>{
 
-  //console.log(cnEntryTest,moduleName,subjectName,testType)
 
   if(testType === 'entry test'){
 
@@ -36,7 +35,82 @@ const getQuestionSet = (moduleName,subjectName,testType) =>{
   return finalans;
 }
 
-const QuestionForm = () => {
+
+function makeReqObject(questions,subjectName){
+
+  /*
+  template response object
+  {
+    "UserAnswer": 
+      {
+        "DBMS": 
+          {
+            "1": "It is a collection of data in some structured manner to enable users to easily access, manage, and store information.",
+            "2": "Normalization is employed to standardize database tables or merge values that exhibit similarities based on specified criteria.",
+            "3": "The primary key serves as the anchor for a composition. Just as a song revolves around its central theme, a primary key secures the database journey.",
+            "4": "Indexes are data structures used to optimize data retrieval speed in a table, working akin to book indexes.",
+            "5": "A foreign key is a field that refers to the primary key in another table, creating links between related data."
+          }
+      }
+  }
+  */
+
+  var userAnswerObject = {}, tempUserAnswerObject = {}
+
+  var questionNumber = 1;
+
+  for (const entry of questions) {
+    const { user_answer } = entry;
+    tempUserAnswerObject[questionNumber++] = user_answer;
+  }
+
+  console.log(subjectName)
+
+  userAnswerObject = {
+    ["UserAnswer"] : {
+      [subjectName] : tempUserAnswerObject
+    }
+  }
+
+  return userAnswerObject;
+}
+
+function hitServer(reqObj){
+
+  async function fetchData() {
+    try {
+      const response = await fetch('https://api.example.com/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqObj)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
+  
+  async function mainReq() {
+    const data = await fetchData();
+    if (data) {
+      console.log('Fetched data Yo :', data);
+    }
+  }
+  
+  mainReq();
+  
+}
+
+const TestQNA = () => {
 
   const { moduleName, subjectName, testType } = useParams();
 
@@ -57,7 +131,16 @@ const QuestionForm = () => {
 
   const handleSubmit = () => {
     //send the request here, loading bar and update in dashboard, connect react chart
-    console.log('Submitted answers:', questions);
+
+    console.log('inside handle submit',subjectName)
+
+    //create a request object
+    var reqObj = makeReqObject(questions,subjectName);
+    console.log(reqObj," is the request object")
+
+    //major part, hitting the backend endpoint
+    var response = hitServer(reqObj);
+    console.log('YAYYYY GOT RESPONSE',response)
   };
 
   return (
@@ -98,4 +181,4 @@ const QuestionForm = () => {
   );
 };
 
-export default QuestionForm;
+export default TestQNA;
