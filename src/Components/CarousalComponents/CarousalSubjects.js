@@ -29,7 +29,7 @@ function CarousalSubjects({userChoiceModule,changeChoiceSubjectCallback}) {
                 ( 
                     coreSubjects.map((item,index) => (
                         <div key={index} onClick={()=>{
-                            changeChoiceSubjectCallback(item)
+                            changeChoiceSubjectCallback(item.toLowerCase())
                         }}>
                             <ElegantCard cardName={item} />
                         </div>

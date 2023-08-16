@@ -9,24 +9,24 @@ const testTitleCardStyles = {
   marginBottom: '10px'
 };
 
-const TestTitleCard = ({ module_name, subject_name, type_of_test }) => {
-  module_name = "MODULE 1";
-  subject_name = "DBMS";
-  type_of_test = "Q AND A";
+const TestTitleCard = ({ moduleName,subjectName,testType }) => {
+  // module_name = "MODULE 1";
+  // subject_name = "DBMS";
+  // type_of_test = "Q AND A";
   return (
-    <Card style={testTitleCardStyles}>
-      <CardContent>
-        <Typography variant="h4" component="h1">
-          {subject_name}
-        </Typography>
-        <Divider style={{ marginTop: '10px', marginBottom: '10px' }} />
-        <Typography variant="subtitle1" component="h5">
-          <i>
-            {module_name} - {type_of_test}
-          </i>
-        </Typography>
-      </CardContent>
-    </Card>
+      <Card style={testTitleCardStyles}>
+        <CardContent>
+          <Typography variant="h4" component="h1">
+            {subjectName.toUpperCase()}
+          </Typography>
+          <Divider style={{ marginTop: '10px', marginBottom: '10px' }} />
+          <Typography variant="subtitle1" component="h5">
+            <i>
+              {moduleName.toUpperCase()} - {testType.toUpperCase()}
+            </i>
+          </Typography>
+        </CardContent>
+      </Card>
   );
 };
 
