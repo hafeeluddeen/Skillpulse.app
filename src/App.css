@@ -34,9 +34,9 @@ p {
   font-size: 16px;
 }
 
-/* Additional Styles */
+/* Additional Styles
 a {
-  color: #007bff; /* Blue link color */
+  color: #007bff; 
   text-decoration: none;
 }
 
@@ -44,4 +44,4 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Add more styles as needed */
+Add more styles as needed */
