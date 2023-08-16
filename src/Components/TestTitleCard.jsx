@@ -10,9 +10,7 @@ const testTitleCardStyles = {
 };
 
 const TestTitleCard = ({ moduleName,subjectName,testType }) => {
-  // module_name = "MODULE 1";
-  // subject_name = "DBMS";
-  // type_of_test = "Q AND A";
+  
   return (
       <Card style={testTitleCardStyles}>
         <CardContent>
