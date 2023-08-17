@@ -11,7 +11,10 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Slide
+  Slide,
+  Chip,
+  Card,
+  CardContent
 } from '@mui/material';
 
 import TestModal from '../Components/TestModal'
@@ -23,6 +26,7 @@ import '../Styles/DashboardStyles.css'
 
 
 import { useNavigate } from 'react-router-dom';
+import ModuleAnalysis from './ModuleAnalysis';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,22 +77,48 @@ function Dashboard() {
     <ThemeProvider theme={theme}>
       <div className='Dashboard-Container'>
 
+        <div style={{ display: 'flex', alignItems: 'center',  justifyContent:'center'}}>
+          <h1 className="font-Pacifico">Dashboard</h1>  
+        </div>  
+
+        <div sx={{position:'relative'}}>
+          <Divider variant='middle'>
+            <Chip label="Graph" />
+          </Divider>
+        </div>
+
         <div className='Score-Graph-Representation'>
           <GraphModule />
         </div>
 
-        <Divider style={{position:'absolute', height:'200px 0' }} />
-
+        <div sx={{position:'relative', borderBottomWidth: 0}}>
+          <Divider variant='middle'>
+            <Chip label="Analytics" />
+          </Divider>
+        </div>
 
         {/* Predefined score rep json from DATA, also the comments */}
-        <div className='Score-Text-Representation'>
-          <h3>TAKE ATLEAST ONE TEST TO VIEW ANALYTICS</h3>
-        </div> 
         
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+          <Card sx={{ height: 300, width: 300, textAlign:'center', margin:'30px' }}>
+            <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+              <div className='Score-Text-Representation'>
+                <Typography variant="h6">TAKE AT LEAST ONE TEST TO VIEW ANALYTICS</Typography>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        {/* <ModuleAnalysis /> */}
+        
+        <div sx={{position:'relative', borderBottomWidth: 0}}>
+          <Divider variant='middle'>
+            <Chip label="Submit" />
+          </Divider>
+        </div>
         
         {/* This should open a fullscreen modal */}
         <div className="Evaluation-Modal">
-          <Button variant="outlined"  onClick={handleClickOpen}>
+          <Button variant="outlined" sx={{margin:'50px'}}  onClick={handleClickOpen}>
             Take Test
           </Button>
 
