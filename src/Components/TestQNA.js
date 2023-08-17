@@ -5,6 +5,8 @@ import TestTitleCard from './TestTitleCard';
 import { cnEntryTest } from '../Data/QNA Entry Tests/ALL_ENTRY_TEST';
 import { cnExitTest } from '../Data/QNA Entry Tests/ALL_EXIT_TEST'; 
 import { useParams } from 'react-router-dom';
+import { TestTotalMarks } from '../Data/TestHistory'
+import { useNavigate } from 'react-router-dom';
 
 const getQuestionSet = (moduleName,subjectName,testType) =>{
 
@@ -75,46 +77,128 @@ function makeReqObject(questions,subjectName){
   return userAnswerObject;
 }
 
-function hitServer(reqObj){
+// function updateTheGraphData(data){
+//   var subject = Object.keys(data.scores)[0];
+//   var sumFinalScores = 0;
+//   Object.values(data.scores.final_score).forEach((val)=>{
+//     sumFinalScores += val
+//   })
 
-  async function fetchData() {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/api/GetRating/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reqObj)
-      });
+//   //since graph prints for 10 only
+//   // console.log(((sumFinalScores/5)/100)*10)
+
+//   TestTotalMarks[subject] = (((sumFinalScores/5)/100)*10);
+//   handleNavigate();
+// }
+
+// function hitServer(reqObj){
+
+//   async function fetchData() {
+//     try {
+//       const response = await fetch('http://127.0.0.1:8000/api/GetRating/', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(reqObj)
+//       });
   
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok');
+//       }
   
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return null;
-    }
-  }
+//       const data = await response.json();
+//       return data;
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//       return null;
+//     }
+//   }
   
-  async function mainReq() {
-    const data = await fetchData();
-    if (data) {
-      console.log('Fetched data Yo :', data);
-    }
-  }
+//   async function mainReq() {
+//     const data = await fetchData();
+//     if (data) {
+//       console.log('Fetched data Yo :', data);
+//       updateTheGraphData(data);
+//     }
+//   }
   
-  mainReq();
+//   mainReq();
   
-}
+// }
 
 const TestQNA = () => {
 
   const { moduleName, subjectName, testType } = useParams();
 
   const [questions,setAnswers] = useState([]);
+
+  const navigate = useNavigate();
+
+  function updateTheGraphData(data){
+    var subject = Object.keys(data.scores)[0].toUpperCase();
+
+    console.log('subject to access',subject);
+    console.log('subject to access test history',TestTotalMarks[subject]);
+    var sumFinalScores = 0;
+    Object.values(data.scores.final_score).forEach((val)=>{
+      sumFinalScores += val
+    })
+
+
+  
+    //since graph prints for 10 only
+    // console.log(((sumFinalScores/5)/100)*10)
+
+    var retFinalSum = parseInt((((sumFinalScores/5)/100)*10))
+
+    console.log('my marks',retFinalSum);
+  
+    // assuming m2 only uses backend
+    TestTotalMarks.m2[subject] = retFinalSum;
+    handleNavigate();
+  }
+  
+  function hitServer(reqObj){
+  
+    async function fetchData() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/GetRating/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(reqObj)
+        });
+    
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+    
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    }
+    
+    async function mainReq() {
+      const data = await fetchData();
+      if (data) {
+        console.log('Fetched data Yo :', data);
+        updateTheGraphData(data);
+      }
+    }
+    
+    mainReq();
+    
+  }
+
+  const handleNavigate = () => {
+    // Use the navigate function to navigate to a specific route
+    navigate('/dashboard');
+  };
 
   useEffect(()=>{
     console.log('params passed : ',moduleName,subjectName,testType);

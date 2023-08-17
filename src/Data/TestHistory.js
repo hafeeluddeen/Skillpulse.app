@@ -42,61 +42,61 @@ var TestModulesHistory = {
 
 
 //for rating bar
-var TestTotalMarks = {
-    m1: {
-      "c/c++": {
-        datatypes: -1,
-        functions: -1,
-        switch: -1,
-        loops: -1,
-        pointers: -1,
-      },
-      java: {
-        inheritance: -1,
-        polymorphism: -1,
-        encapsulation: -1,
-        abstraction: -1,
-        interfaces: -1,
-      },
-      oops: {
-        classes: -1,
-        objects: -1,
-        constructors: -1,
-        methods: -1,
-        inheritance: -1,
-      },
-      dsa: {
-        arrays: -1,
-        linkedLists: -1,
-        stacks: -1,
-        queues: -1,
-        trees: -1,
-      },
-    },
-    m2: {
-      cn: {
-        "Application Level Concepts": -1,
-        "Hardware Concepts": -1,
-        "Generic Questions": -1,
-        "Data Transportation": -1,
-        "understanding of Basic terminologies": -1,
-      },
-      dbms: {
-        normalization: -1,
-        indexing: -1,
-        transactions: -1,
-        sql: -1,
-        erDiagrams: -1,
-      },
-      os: {
-        processes: -1,
-        memoryManagement: -1,
-        fileSystems: -1,
-        scheduling: -1,
-        synchronization: -1,
-      },
-    },
-  };
+// var TestTotalMarks = {
+//     m1: {
+//       "c/c++": {
+//         datatypes: -1,
+//         functions: -1,
+//         switch: -1,
+//         loops: -1,
+//         pointers: -1,
+//       },
+//       java: {
+//         inheritance: -1,
+//         polymorphism: -1,
+//         encapsulation: -1,
+//         abstraction: -1,
+//         interfaces: -1,
+//       },
+//       oops: {
+//         classes: -1,
+//         objects: -1,
+//         constructors: -1,
+//         methods: -1,
+//         inheritance: -1,
+//       },
+//       dsa: {
+//         arrays: -1,
+//         linkedLists: -1,
+//         stacks: -1,
+//         queues: -1,
+//         trees: -1,
+//       },
+//     },
+//     m2: {
+//       cn: {
+//         "Application Level Concepts": -1,
+//         "Hardware Concepts": -1,
+//         "Generic Questions": -1,
+//         "Data Transportation": -1,
+//         "understanding of Basic terminologies": -1,
+//       },
+//       dbms: {
+//         normalization: -1,
+//         indexing: -1,
+//         transactions: -1,
+//         sql: -1,
+//         erDiagrams: -1,
+//       },
+//       os: {
+//         processes: -1,
+//         memoryManagement: -1,
+//         fileSystems: -1,
+//         scheduling: -1,
+//         synchronization: -1,
+//       },
+//     },
+//   };
   
 
 
@@ -107,8 +107,8 @@ var TestTotalMarks = {
     m1 : {
         "C/C++" : 7, 
         "JAVA" : -1,
-        "OOPS" : 10,
-        "DSA" : 4,
+        "OOPS" : 9,
+        "DSA" : 9,
     },
     m2 : {
         "CN" : 0, 

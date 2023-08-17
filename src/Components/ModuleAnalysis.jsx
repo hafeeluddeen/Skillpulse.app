@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useState } from "react";
 import Ratingbar from "./RatingBar";
+import { TestTotalMarks as totalMarks } from "../Data/TestHistory";
 
 const ModuleAnalysis = () => {
   const [moduleSelection, setModuleSelection] = useState("");
@@ -13,12 +14,28 @@ const ModuleAnalysis = () => {
     const data = {
       m2: {
         cn: {
-          topics: ["session_layer", "data_layer"],
-          marks: [30, 64],
+          topics: Object.keys(totalMarks.m2.cn).filter((val)=>{
+            return totalMarks.m2.cn[val]>-1
+          }),
+          marks: Object.values(totalMarks.m2.cn).filter((val)=>{
+            return totalMarks.m2.cn[val]>-1
+          }),
         },
         dbms: {
-          topics: ["RDBMS", "RE DIAGRAMS"],
-          marks: [23, 100],
+          topics: Object.keys(totalMarks.m1.dbms).filter((val)=>{
+            return totalMarks.m2.dbms[val]>-1
+          }),
+          marks: Object.values(totalMarks.m1.dbms).filter((val)=>{
+            return totalMarks.m2.dbms[val]>-1
+          })
+        },
+        os : {
+          topics: Object.keys(totalMarks.m1.os).filter((val)=>{
+            return totalMarks.m2.os[val]>-1
+          }),
+          marks: Object.values(totalMarks.m1.os).filter((val)=>{
+            return totalMarks.m2.os[val]>-1
+          })
         },
       },
       m1: {
@@ -60,7 +77,7 @@ const ModuleAnalysis = () => {
 
       {data[moduleSelection] &&
         Object.keys(data[moduleSelection]).map((sub, subIdx) => (
-          
+
           <div key={subIdx} style={{ display:'flex',justifyContent:'center',alignItems:"center",marginBottom: "20px" }}>
             <h2>{sub}</h2>
             <ul style={{ listStyle: "none", paddingLeft: "0" }}>
