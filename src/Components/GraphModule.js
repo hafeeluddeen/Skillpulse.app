@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import { BarChart } from '@mui/x-charts/BarChart';
+import { Card, CardContent, Typography } from '@mui/material';
 import { TestTotalMarks } from '../Data/TestHistory';
 
 function GraphModule() {
@@ -33,28 +34,32 @@ function GraphModule() {
   // hardcoded marks
 
   return (
-    <div>
-      { 
-        (subjects.length>0 && marks.length>0) ? (
-          <BarChart
-            xAxis={[
-            {
-                id: 'Score-Graph-Representation',
-                data: subjects,
-                scaleType: 'band',
-            },
-            ]}
-            series={[
-            {
-                data: marks,
-            },
-            ]}
-            width={400}
-            height={400}
-          />
-        ) : (<h1>NO Test Taken</h1>)
-      }
-    </div>
+    <Card sx={{margin:'10px'}}>
+      <CardContent>
+        <div>
+          { 
+            (subjects.length>0 && marks.length>0) ? (
+              <BarChart
+                xAxis={[
+                {
+                    id: 'Score-Graph-Representation',
+                    data: subjects,
+                    scaleType: 'band',
+                },
+                ]}
+                series={[
+                {
+                    data: marks,
+                },
+                ]}
+                width={400}
+                height={400}
+              />
+            ) : (<h1>NO Test Taken</h1>)
+          }
+        </div>
+      </CardContent>
+    </Card>
   )
 }
 
